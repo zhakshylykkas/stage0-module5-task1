@@ -1,5 +1,7 @@
 package com.epam.mjc.stage0;
 
+import java.util.Arrays;
+
 /**
  * Here are the tasks for working with the arrays.
  * <p>
@@ -7,11 +9,19 @@ package com.epam.mjc.stage0;
  */
 public class ArrayTasks {
 
+    public static void main(String[] args) {
+        ArrayTasks arrayTasks = new ArrayTasks();
+        int[][] ragged = new int[][]{{1, -2, 0}, {1}};
+        System.out.println(Arrays.deepToString(arrayTasks.sortRaggedArray(ragged)));
+        for (int i = 0; i < ragged.length; i++) {
+            System.out.println(ragged[i].length);
+        }
+    }
     /**
      * Return a String[] array that will list all the seasons of the year, starting with winter.
      */
     public String[] seasonsArray() {
-        return new String[]{"winter, spring, summer, autumn"};
+        return new String[]{"winter", "spring", "summer", "autumn"};
     }
 
     /**
@@ -97,23 +107,25 @@ public class ArrayTasks {
      * arr = [1, 2]         -> [1, 2]
      */
     public int[] getOnlyPositiveNumbers(int[] arr) {
-        int length = arr.length;
-        int[] posNums = new int[length];
+        int[] posNums = new int[arr.length];
         int posNumToIndex = 0;
+        int countNegatives = 0;
         for (int i = 0; i < arr.length; i++) {
             if (arr[i] < 0) {
-                //System.out.println(arr[i]);
+                countNegatives++;
                 posNumToIndex--;
-                length--;
-                //continue;
             } else {
                 posNums[posNumToIndex] = arr[i];
-                //posNumToIndex++;
             }
             posNumToIndex++;
         }
 
-        return posNums;
+        int[] newPosNums = new int[posNums.length-countNegatives];
+        for (int i = 0; i < newPosNums.length; i++) {
+            newPosNums[i] = posNums[i];
+        }
+
+        return newPosNums;
     }
 
     /**
@@ -127,12 +139,16 @@ public class ArrayTasks {
      * arr = [[5, 4], [7]]       -> [[7], [4, 5]]
      */
     public int[][] sortRaggedArray(int[][] arr) {
+        // Found out that I need to create a new array
+        //int[][] newRaggedArr = new int[][];
         for (int i = 1; i < arr.length; i++) {
+            System.out.println("raggedArr[" + (i-1) + "] = " + arr[i-1].length);
             if (arr[i].length < arr[i-1].length) {
                 int[] tempArr = arr[i];
                 arr[i] = arr[i-1];
                 arr[i-1] = tempArr;
             }
+
         }
 
         for (int i = 0; i < arr.length; i++) {
