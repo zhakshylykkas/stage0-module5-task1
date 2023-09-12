@@ -1,7 +1,5 @@
 package com.epam.mjc.stage0;
 
-import java.util.Arrays;
-
 /**
  * Here are the tasks for working with the arrays.
  * <p>
@@ -9,20 +7,6 @@ import java.util.Arrays;
  */
 public class ArrayTasks {
 
-    public static void main(String[] args) {
-        ArrayTasks arrayTasks = new ArrayTasks();
-        int[] arr = {1, -2, 3};
-        String[] strArr = {"pineapple", "apple", "pen"};
-        int[][] raggedArr = {{3, 1, 2,}, {3, 2}};
-
-        System.out.println(Arrays.toString(arrayTasks.seasonsArray()));
-        System.out.println(Arrays.toString(arrayTasks.generateNumbers(7)));
-        System.out.println(arrayTasks.totalSum(arr));
-        System.out.println(arrayTasks.findIndexOfNumber(arr, 4));
-        System.out.println(Arrays.toString(arrayTasks.reverseArray(strArr)));
-        System.out.println(Arrays.toString(arrayTasks.getOnlyPositiveNumbers(arr)));
-        System.out.println(Arrays.deepToString(arrayTasks.sortRaggedArray(raggedArr)));
-    }
     /**
      * Return a String[] array that will list all the seasons of the year, starting with winter.
      */
