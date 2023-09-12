@@ -9,14 +9,6 @@ import java.util.Arrays;
  */
 public class ArrayTasks {
 
-    public static void main(String[] args) {
-        ArrayTasks arrayTasks = new ArrayTasks();
-        int[][] ragged = new int[][]{{1, -2, 0}, {1}};
-        System.out.println(Arrays.deepToString(arrayTasks.sortRaggedArray(ragged)));
-        for (int i = 0; i < ragged.length; i++) {
-            System.out.println(ragged[i].length);
-        }
-    }
     /**
      * Return a String[] array that will list all the seasons of the year, starting with winter.
      */
