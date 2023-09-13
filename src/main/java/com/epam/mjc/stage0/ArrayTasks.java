@@ -97,25 +97,21 @@ public class ArrayTasks {
      * arr = [1, 2]         -> [1, 2]
      */
     public int[] getOnlyPositiveNumbers(int[] arr) {
-        int[] posNums = new int[arr.length];
-        int posNumToIndex = 0;
-        int countNegatives = 0;
+        int countPos = 0;
         for (int i = 0; i < arr.length; i++) {
-            if (arr[i] < 0) {
-                countNegatives++;
-                posNumToIndex--;
-            } else {
-                posNums[posNumToIndex] = arr[i];
+            if (arr[i] > 0) countPos++;
+        } 
+        
+        int[] posNums = new int[countPos];
+        int posNumIndex = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] > 0) {
+                posNums[posNumIndex] = arr[i];
+                posNumIndex++;
             }
-            posNumToIndex++;
         }
 
-        int[] newPosNums = new int[posNums.length-countNegatives];
-        for (int i = 0; i < newPosNums.length; i++) {
-            newPosNums[i] = posNums[i];
-        }
-
-        return newPosNums;
+        return posNums;
     }
 
     /**
@@ -129,28 +125,27 @@ public class ArrayTasks {
      * arr = [[5, 4], [7]]       -> [[7], [4, 5]]
      */
     public int[][] sortRaggedArray(int[][] arr) {
-        // Found out that I need to create a new array
-        //int[][] newRaggedArr = new int[][];
-        for (int i = 1; i < arr.length; i++) {
-            System.out.println("raggedArr[" + (i-1) + "] = " + arr[i-1].length);
-            if (arr[i].length < arr[i-1].length) {
-                int[] tempArr = arr[i];
-                arr[i] = arr[i-1];
-                arr[i-1] = tempArr;
-            }
-
-        }
-
         for (int i = 0; i < arr.length; i++) {
-            for (int j = 1; j < arr[i].length; j++) {
-                if (arr[i][j] < arr[i][j-1]) {
-                    int tempNum = arr[i][j];
-                    arr[i][j] = arr[i][j-1];
-                    arr[i][j-1] = tempNum;
+            for (int j = 0; j < arr.length - 1; j++) {
+                if (arr[j].length > arr[j + 1].length) {
+                    int[] tempArr = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = tempArr;
                 }
             }
         }
 
+        for (int j = 0; j < arr.length; j++) {
+            for (int k = 0; k < arr[j].length - 1; k++) {
+                for (int l = 0; l < arr[j].length - k - 1; l++) {
+                    if (arr[j][l] > arr[j][l + 1]) {
+                        int tempNum = arr[j][l];
+                        arr[j][l] = arr[j][l + 1];
+                        arr[j][l + 1] = tempNum;
+                    }
+                }
+            }
+        }
         return arr;
     }
 }
